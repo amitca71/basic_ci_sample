@@ -1,0 +1,38 @@
+{
+  "name": "basic_ci_sample",
+  "version": "1.0.0",
+  "description": "basic circleci sample that performs tests and log test results and logs",
+  "main": "na",
+  "scripts": {
+    "sync_version": "bump-version",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" ",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --ci --runInBand --reporters=default --reporters=jest-junit --config jestconfig.json",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "na"
+  },
+  "keywords": [
+    "circleci",
+    "github",
+    "npm",
+    "node",
+    "jest"
+  ],
+  "author": "amit cahanovich",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.4",
+    "jest-junit": "^12.2.0",
+    "@amitca71/npm-auto-bump-patch": "^1.0.3",
+    "prettier": "^2.3.1",
+    "ts-jest": "^27.0.3",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.3.4"
+  }
+}
