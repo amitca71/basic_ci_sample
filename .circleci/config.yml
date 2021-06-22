@@ -28,7 +28,7 @@ jobs:
       - checkout
       - run:
           name: Authenticate with registry
-          command: echo "registry=https://registry.npmjs.org" > ~/repo/.npmrc; ; echo "@amitca71:registry=https://npm.pkg.github.com/" >> ~/repo/.npmrc; echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/repo/.npmrc
+          command: echo "registry=https://registry.npmjs.org" > ~/repo/.npmrc; echo "@amitca71:registry=https://npm.pkg.github.com/" >> ~/repo/.npmrc; echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/repo/.npmrc
       # Next, the node orb's install-packages step will install the dependencies from a package.json.
       # The orb install-packages step will also automatically cache them for faster future runs.
       - node/install-packages
