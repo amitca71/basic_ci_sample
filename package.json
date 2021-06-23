@@ -1,5 +1,5 @@
 {
-  "name": "basic_ci_sample",
+  "name": "@vnatures/basic_ci_sample",
   "version": "1.0.0",
   "description": "basic circleci sample that performs tests and log test results and logs",
   "main": "na",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "na"
+    "url": "https://github.com/vnatures/basic_ci_sample"
   },
   "keywords": [
     "circleci",
@@ -24,11 +24,13 @@
   ],
   "author": "amit cahanovich",
   "license": "ISC",
+  "dependencies": {
+    "npm-auto-bump-patch": "^1.0.4"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "jest": "^27.0.4",
     "jest-junit": "^12.2.0",
-    "@amitca71/npm-auto-bump-patch": "^1.0.3",
     "prettier": "^2.3.1",
     "ts-jest": "^27.0.3",
     "tslint": "^6.1.3",

@@ -28,7 +28,9 @@ jobs:
       - checkout
       - run:
           name: Authenticate with registry
-          command: echo "registry=https://registry.npmjs.org" > ~/repo/.npmrc; echo "@amitca71:registry=https://npm.pkg.github.com/" >> ~/repo/.npmrc; echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/repo/.npmrc
+          command: echo "registry=https://registry.npmjs.org" > ~/repo/.npmrc; 
+                   echo "@vnatures:registry=https://npm.pkg.github.com/" >> ~/repo/.npmrc; 
+                   echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/repo/.npmrc
       # Next, the node orb's install-packages step will install the dependencies from a package.json.
       # The orb install-packages step will also automatically cache them for faster future runs.
       - node/install-packages
@@ -54,7 +56,27 @@ jobs:
           path: /tmp/console.log
       - store_artifacts:
           path: reports
-
+  publish-package:
+      <<: *defaults
+      docker:
+       - image: cimg/node:15.1
+      steps:
+       - attach_workspace:
+           at: ~/repo
+       - run:
+          name: Authenticate with registry
+          command: echo "registry=https://npm.pkg.github.com/" > ~/repo/.npmrc; 
+                   echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/repo/.npmrc
+       - run:
+           name: Sync npm version
+           command: npm run-script sync_version  2>&1 | tee -a /tmp/console.log
+       - run:
+           name: Publish package
+           command: npm publish 2>&1 | tee -a /tmp/console.log
+       - store_artifacts:
+           path: ~/.npm/_logs/
+       - store_artifacts:
+           path: /tmp/console.log
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
@@ -65,3 +87,21 @@ workflows:
       - build-and-test
       # For running simple node tests, you could optionally use the node/test job from the orb to replicate and replace the job above in fewer lines.
       # - node/test
+      - publish_approval:
+            type: approval
+            requires:
+              - build-and-test
+            filters:
+              branches:
+                only:
+                  - main
+                  - master
+      - publish-package:
+           requires:
+             - build-and-test
+             - publish_approval
+           filters:
+             branches:
+               only:
+                 - main
+                 - master
