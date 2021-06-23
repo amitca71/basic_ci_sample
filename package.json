@@ -24,11 +24,13 @@
   ],
   "author": "amit cahanovich",
   "license": "ISC",
+  "dependencies": {
+    "npm-auto-bump-patch": "^1.0.4"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "jest": "^27.0.4",
     "jest-junit": "^12.2.0",
-    "npm-auto-bump-patch": "^1.0.1",
     "prettier": "^2.3.1",
     "ts-jest": "^27.0.3",
     "tslint": "^6.1.3",
