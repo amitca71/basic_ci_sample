@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "na"
+    "url": "https://github.com/vnatures/basic_ci_sample"
   },
   "keywords": [
     "circleci",
