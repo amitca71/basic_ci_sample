@@ -1,5 +1,5 @@
 {
-  "name": "@versatile/basic_ci_sample",
+  "name": "@vnatures/basic_ci_sample",
   "version": "1.0.0",
   "description": "basic circleci sample that performs tests and log test results and logs",
   "main": "na",
