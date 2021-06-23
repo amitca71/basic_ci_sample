@@ -64,14 +64,9 @@ jobs:
        - attach_workspace:
            at: ~/repo
        - run:
-          name: Set registry URL
-          command: npm set registry https://registry.npmjs.org
-       - run:
           name: Authenticate with registry
-          command: echo "registry=https://registry.npmjs.org" > ~/repo/.npmrc; 
-                   echo "@vnatures:registry=https://npm.pkg.github.com/" >> ~/repo/.npmrc; 
+          command: echo "registry=https://npm.pkg.github.com/" > ~/repo/.npmrc; 
                    echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/repo/.npmrc
-
        - run:
            name: Sync npm version
            command: npm run-script sync_version  2>&1 | tee -a /tmp/console.log
