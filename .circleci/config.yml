@@ -64,6 +64,9 @@ jobs:
        - attach_workspace:
            at: ~/repo
        - run:
+          name: Set registry URL
+          command: npm set registry https://registry.npmjs.org
+       - run:
           name: Authenticate with registry
           command: echo "registry=https://registry.npmjs.org" > ~/repo/.npmrc; 
                    echo "@vnatures:registry=https://npm.pkg.github.com/" >> ~/repo/.npmrc; 
